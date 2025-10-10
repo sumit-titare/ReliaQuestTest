@@ -1,93 +1,125 @@
-# Frontend Assessment
+# UI Assessment - Pokédex
 
+This is a take-home assessment that will leverage various frontend technologies to evaluate your aptitude. You can complete this at your own pace. Your recruiter will communicate when you should submit this assessment.
 
+---
 
-## Getting started
+## Getting Started
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+### Leveraging Open API GraphQL
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+In this assessment you will utilize a Pokémon open API (GraphQL). This will demonstrate your knowledge and aptitude with GraphQL, which ReliaQuest heavily leverages.
 
-## Add your files
+**Resources:**
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/topics/git/add_files/#add-files-to-a-git-repository) or push an existing Git repository with the following command:
+- [API Docs](https://pokeapi.co/docs/graphql) (with [interactive playground](https://graphql.pokeapi.co/v1beta2/console))
+- [Apollo Docs](https://www.apollographql.com/docs/react/)
+- [React Docs](https://reactjs.org/docs/getting-started.html)
+- [React Router Docs](https://reactrouter.com/home)
 
-```
-cd existing_repo
-git remote add origin https://gitlab.com/rqinnovations/software-engineering/external/interviews/frontend-assessment.git
-git branch -M master
-git push -uf origin master
-```
+---
 
-## Integrate with your tools
+## App-Wide Requirements
 
-- [ ] [Set up project integrations](https://gitlab.com/rqinnovations/software-engineering/external/interviews/frontend-assessment/-/settings/integrations)
+1. **Must use JSS for all styling** - No CSS files. The `<PokemonListPage />` component (`src/screens/PokemonListPage.tsx`) already demonstrates this pattern using the `tss` function from `src/tss.ts`. All styling contexts are already provided and implemented for you.
 
-## Collaborate with your team
+2. **Must use TypeScript for all files** - Proper typing throughout with minimal use of `any`.
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Set auto-merge](https://docs.gitlab.com/user/project/merge_requests/auto_merge/)
+3. **All components must handle loading, error, and empty states appropriately** - App should not break in unexpected empty or error states.
 
-## Test and Deploy
+---
 
-Use the built-in continuous integration in GitLab.
+## Core Requirements
 
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
+### 1 - List Page
 
-***
+Expand the existing list page with the following features. You will need to retrieve data from the `useGetPokemons` hook (`src/hooks/useGetPokemons.ts`) where the GraphQL query is defined.
 
-# Editing this README
+1. Create list items that display:
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
+   - Pokémon name
+   - Pokémon number
+   - Pokémon type(s)
+   - Pokémon image (available through the API)
 
-## Suggestions for a good README
+2. Each list item should have a hover effect
 
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+3. Show a proper loading state while data is being fetched
 
-## Name
-Choose a self-explaining name for your project.
+### 2 - Search Functionality
 
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+Implement search functionality so users can quickly find Pokémon.
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+1. Add a search input box that filters the list of Pokémon
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+2. Search should be **case insensitive**
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+3. Only Pokémon matching the search should be displayed
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+4. Show appropriate messaging when no results are found
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+5. **For Entry- and Mid-Level Engineers:** Searching will be **client-side only** (filter the results you already have). Please do not impement server-side searching, as you are being evaluated on your ability to manipulate a data set.
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+6. **For Senior Engineers:** See "Additional Senior Requirements" below - you will implement **server-side search** instead.
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+### 3 - Dialog for Pokémon Details
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
+When a user clicks on a Pokémon, show a dialog/modal with detailed information.
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+1. **Route-dependent modal:** The dialog should open based on the route using `react-router` (already set up in the app). For example: `/pokemon/25`. This also means the page should support deep linking--if you copy a link to a details dialog, you should be able to paste that link in the address bar and get to the same details dialog.
 
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
+2. **Open on top of the list:** The dialog should overlay the list page, whether you clicked a list item or pasted a link to the details page.
 
-## License
-For open source projects, say how it is licensed.
+3. **Use a component library:** Feel free to use any 3rd party library for the dialog/modal (e.g., [Ant Design Modal](https://ant.design/components/modal)) so you don't have to build one from scratch.
 
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+4. **Fetch detailed data:** Use GET_POKEMON_DETAILS query to fetch details for a single Pokémon
+
+5. Handle states: Properly handle loading and error states for the detail fetch.
+
+6. Display choice: What additional details you display and how you lay them out is up to you.
+
+### 4 - Testing Requirements
+
+This assessment includes a testing component using Jest and React Testing Library, found in PokemonListPage.test.tsx
+
+1. Working reference test - This test passes and demonstrates the testing patterns we expect.
+2. Broken test - This test has an intentional bug in its logic. Find and fix it so the test passes.
+3. TODO test - Complete the test skeleton marked with jest.todo to properly validate the search functionality you've implemented.
+
+All tests should pass when running yarn test.
+
+## Additional Requirements for Senior Engineers
+
+Senior candidates must complete all entry/mid-level requirements AND the following:
+
+### 1. Pagination
+
+Implement pagination for the Pokémon list:
+
+- Add pagination controls (Previous/Next buttons, page numbers, or similar UI)
+- Load Pokémon in chunks rather than all 151 at once (e.g., 20 per page)
+- The GraphQL API supports pagination with the `first` and `offset` parameters
+- Maintain pagination state when navigating to and from the detail modal
+- Search functionality should work with pagination
+
+### 2. Server-Side Search
+
+Replace the client-side search with server-side search:
+
+- Update your GraphQL query to perform searching on the backend
+- Use the API documentation and interactive playground to test your query
+- Implement debouncing for the search input to avoid excessive API calls while typing
+- Show a loading indicator while search results are being fetched
+- Search should work in conjunction with pagination
+
+———
+
+## Submission
+
+When you're ready to submit:
+
+1. Ensure all tests pass
+2. Ensure the app runs without errors
+3. Follow the submission instructions provided by your recruiter
+
+Good luck!
