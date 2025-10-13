@@ -1,15 +1,16 @@
 import { gql } from '@apollo/client';
 import { useQuery } from '@apollo/client/react';
 
-export type Pokemon = {
+export interface Pokemon {
   id: string;
   name: string;
-};
+  types?: string[];
+  sprite?: string;
+}
 
-export type PokemonOption = {
-  value: Pokemon['id'];
-  label: Pokemon['name'];
-};
+export interface PokemonDetail extends Pokemon {
+  // Details
+}
 
 export const GET_POKEMONS = gql`
   query GetPokemons($search: String) {
@@ -75,8 +76,12 @@ export const GET_POKEMON_DETAILS = gql`
 `;
 
 // Search should be done client-side for the mid-level assessment. Uncomment for the senior assessment.
-export const useGetPokemons = (/* search?: string */) => {
-  const { data, ...queryRes } = useQuery<{ pokemon: any[] }>(GET_POKEMONS, {
+export const useGetPokemons = (/* search?: string */): {
+  data: Pokemon[];
+  loading: boolean;
+  error: useQuery.Result['error'];
+} => {
+  const { data, loading, error } = useQuery<{ pokemon: any[] }>(GET_POKEMONS, {
     variables: {
       search: '', // `.*${search}.*`,
     },
@@ -84,10 +89,13 @@ export const useGetPokemons = (/* search?: string */) => {
 
   return {
     data:
-      data?.pokemon?.map((p) => ({
-        id: p.id,
-        name: p.pokemonspecy.pokemonspeciesnames?.[0]?.name,
-      })) ?? [],
-    ...queryRes,
+      data?.pokemon?.map(
+        (p): Pokemon => ({
+          id: p.id,
+          name: p.pokemonspecy.pokemonspeciesnames?.[0]?.name,
+        }),
+      ) ?? [],
+    loading,
+    error,
   };
 };
