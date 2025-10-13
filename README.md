@@ -70,23 +70,19 @@ When a user clicks on a Pokémon, show a dialog/modal with detailed information.
 
 2. **Open on top of the list:** The dialog should overlay the list page, whether you clicked a list item or pasted a link to the details page.
 
-3. **Use a component library:** Feel free to use any 3rd party library for the dialog/modal (e.g., [Ant Design Modal](https://ant.design/components/modal)) so you don't have to build one from scratch.
+3. **Fetch detailed data:** Use GET_POKEMON_DETAILS query to fetch details for a single Pokémon
 
-4. **Fetch detailed data:** Use GET_POKEMON_DETAILS query to fetch details for a single Pokémon
+4. **Handle states:** Properly handle loading and error states for the detail fetch.
 
-5. Handle states: Properly handle loading and error states for the detail fetch.
+5. **Display choice:** What additional details you display and how you lay them out is up to you.
 
-6. Display choice: What additional details you display and how you lay them out is up to you.
+6. **You may use a component library** for the dialog/modal (e.g., [Ant Design Modal](https://ant.design/components/modal)) so you don't have to build one from scratch.
 
 ### 4 - Testing Requirements
 
-This assessment includes a testing component using Jest and React Testing Library, found in PokemonListPage.test.tsx
+This assessment includes a testing component using Jest and React Testing Library, found in PokemonListPage.test.tsx. You can run it with `yarn test`
 
-1. Working reference test - This test passes and demonstrates the testing patterns we expect.
-2. Broken test - This test has an intentional bug in its logic. Find and fix it so the test passes.
-3. TODO test - Complete the test skeleton marked with jest.todo to properly validate the search functionality you've implemented.
-
-All tests should pass when running yarn test.
+All three tests should pass when submitting.
 
 ## Additional Requirements for Senior Engineers
 

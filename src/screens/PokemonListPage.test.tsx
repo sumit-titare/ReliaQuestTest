@@ -12,12 +12,10 @@ jest.mock('react-router-dom', () => ({
 }));
 
 describe('PokemonListPage', () => {
-  // Working test
   test('it renders', () => {
     const { getByText } = render(<PokemonListPage />);
     getByText('Bulbasaur');
   });
-  // Broken test. Fix this one
   test('clicking on a pokemon calls navigate', async () => {
     const mockNavigate = jest.fn();
     (useNavigate as jest.Mock).mockReturnValue(mockNavigate);
@@ -29,6 +27,5 @@ describe('PokemonListPage', () => {
 
     expect(mockNavigate).toHaveBeenCalledWith(/* The route to Bulbasaur */);
   });
-  // Fill out this test when you've added the functionality
   test.todo('typing in the search bar filters the results');
 });
