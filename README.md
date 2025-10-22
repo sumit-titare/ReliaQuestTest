@@ -58,7 +58,7 @@ Implement search functionality so users can quickly find Pokémon.
 
 4. Show appropriate messaging when no results are found
 
-5. **For Entry- and Mid-Level Engineers:** Searching will be **client-side only** (filter the results you already have). Please do not impement server-side searching, as you are being evaluated on your ability to manipulate a data set.
+5. **For Entry- and Mid-Level Engineers:** Searching will be **client-side only** (filter the results you already have). Please do not implement server-side searching, as you are being evaluated on your ability to manipulate a data set.
 
 6. **For Senior Engineers:** See "Additional Senior Requirements" below - you will implement **server-side search** instead.
 
